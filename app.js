@@ -20,7 +20,7 @@
         };
 
         var req = http.request(reqOptions, function (res) {
-            if(res.statusCode !== 200 || res.statusCode !== 404) {
+            if(res.statusCode !== 200 && res.statusCode !== 404) {
                 next({err: 'Response Error', code: res.statusCode});
                 return;
             }
