@@ -1,0 +1,14 @@
+{
+    "name": "mvph-trigger",
+    "description": "a helper project to trigger downloads of all pictures",
+    "version": "0.0.0",
+    "private": true,
+    "author": {
+        "name": "Ahmet Kizilay",
+        "url": "https://github.com/artsince"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "async": ">= 0.2.9"
+    }
+}
