@@ -4,20 +4,23 @@
     var async = require('async'),
         http  = require('http');
 
-    var numberOfPics = 6972;
-    
-    async.timesSeries(numberOfPics, function (n, next) {
-        console.log(n);
+    var numberOfPics = parseInt(process.argv[2]);
+    var offset = parseInt(process.argv[3]);
+
+    async.timesSeries(numberOfPics - offset, function (n, next) {
+
+        var currentNumber = n + offset + 1;
+        console.log(currentNumber);
 
         var reqOptions = {
             host: 'mvph.herokuapp.com',
             port: 80,
-            path: '/p/' + (n + 1),
+            path: '/p/' + currentNumber,
             method: 'GET'
         };
 
         var req = http.request(reqOptions, function (res) {
-            if(res.statusCode !== 200) {
+            if(res.statusCode !== 200 || res.statusCode !== 404) {
                 next({err: 'Response Error', code: res.statusCode});
                 return;
             }
@@ -42,6 +45,7 @@
 
     }, function (err) {
         if(err) {
+            console.log(err);
             throw err;
         }
 
